@@ -1,6 +1,10 @@
 # Vue-cli 3 and multiple entry points (pages)
 
-> UPD: I found reference for multiple pages in the vue-cli source code. I think it's not documented yet.
+> UPD.1: I found reference for multiple pages in the vue-cli source code. I think it's not yet documented.
+
+> UPD.2: See config [documentation](https://cli.vuejs.org/config/#pages) for create multiple pages.
+
+***
 
 For example we need build three different app instances:
 - index     - `/`;

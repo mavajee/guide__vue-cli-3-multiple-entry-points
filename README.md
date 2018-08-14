@@ -60,7 +60,7 @@ config.plugin('manage-html').use(require('html-webpack-plugin'), [
 
 ### Vue router
 
-Using vue router you will see erorr, for fix configure [historyApiFallback](https://webpack.js.org/configuration/dev-server/#devserver-historyapifallback) for **webpack-dev-server**:
+Using vue router you will see error, for fix configure [historyApiFallback](https://webpack.js.org/configuration/dev-server/#devserver-historyapifallback) for **webpack-dev-server**:
 
 ```js
 devServer: {
@@ -72,3 +72,23 @@ devServer: {
     },
 }
 ```
+
+## Nginx configure
+
+For more, if you need configure nginx you can make something like this:
+
+```
+server {
+    listen 80;
+
+    location ~ ^/manage(.*)$ {
+        proxy_pass http://127.0.0.1:8550/manage/$1;
+    }
+}
+```
+
+Best way if on a each entry point configure own location. See full config [here](configs/nginx.dev.conf).
+
+Using non "localhost" host HMR can not be working. And for it add [allowedHosts](https://webpack.js.org/configuration/dev-server/#devserver-allowedhosts) to `webpack-dev-server` or edit server headers.
+
+

@@ -3,58 +3,32 @@ const path = require('path')
 const PORT = 8550
 const DEV_HOST = 'vmep.com'
 
+/**
+ * https://cli.vuejs.org/config/#pages
+ */
 module.exports = {
-  chainWebpack: config => {
-    /**
-     * Remove the standard entry point
-     */
-    config.entryPoints.delete('app').end()
-    /**
-     * Add new entry points
-     */
-    config
-      .entry('index')
-      .add(path.resolve(__dirname, 'src/index/main.js'))
-      .end()
-      .entry('manage')
-      .add(path.resolve(__dirname, 'src/manage/main.js'))
-      .end()
-      .entry('dashboard')
-      .add(path.resolve(__dirname, 'src/dashboard/main.js'))
-      .end()
-
-    /**
-     * Edit existing html-webpack-plugin
-     */
-    config.plugin('html').tap(args => {
-      return [
-        {
-          filename: 'index.html',
-          template: 'public/index.html',
-          chunks: ['chunk-vendors', 'chunk-common', 'index']
-          // for prod use minify. https://github.com/kangax/html-minifier#options-quick-reference
-        }
-      ]
-    })
-
-    /**
-     * Add new
-     */
-    config.plugin('manage-html').use(require('html-webpack-plugin'), [
-      {
-        filename: 'manage/index.html',
-        template: 'public/index.html',
-        chunks: ['chunk-vendors', 'chunk-common', 'manage']
-      }
-    ])
-
-    config.plugin('dashboard-html').use(require('html-webpack-plugin'), [
-      {
-        filename: 'dashboard/index.html',
-        template: 'public/index.html',
-        chunks: ['chunk-vendors', 'chunk-common', 'dashboard']
-      }
-    ])
+  pages: {
+    index: {
+      entry: 'src/index/main.js',
+      template: 'public/index.html',
+      filename: 'index.html',
+      title: 'Index Page',
+      chunks: ['chunk-vendors', 'chunk-common', 'index']
+    },
+    manage: {
+      entry: 'src/manage/main.js',
+      template: 'public/index.html',
+      filename: 'manage/index.html',
+      title: 'Manage Page',
+      chunks: ['chunk-vendors', 'chunk-common', 'manage']
+    },
+    dashboard: {
+      entry: 'src/dashboard/main.js',
+      template: 'public/index.html',
+      filename: 'dashboard/index.html',
+      title: 'Dashboard Page',
+      chunks: ['chunk-vendors', 'chunk-common', 'dashboard']
+    }
   },
 
   devServer: {
@@ -67,4 +41,16 @@ module.exports = {
     },
     allowedHosts: [DEV_HOST]
   }
+}
+
+
+module.exports = {
+  pages: {
+    manage: {
+      entry: 'src/manage/main.js',
+      template: 'public/index.html',
+      filename: 'manage/index.html',
+      title: 'Manage Page',
+      chunks: ['chunk-vendors', 'chunk-common', 'manage']
+    },
 }

@@ -42,15 +42,3 @@ module.exports = {
     allowedHosts: [DEV_HOST]
   }
 }
-
-
-module.exports = {
-  pages: {
-    manage: {
-      entry: 'src/manage/main.js',
-      template: 'public/index.html',
-      filename: 'manage/index.html',
-      title: 'Manage Page',
-      chunks: ['chunk-vendors', 'chunk-common', 'manage']
-    },
-}

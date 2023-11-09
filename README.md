@@ -9,7 +9,7 @@
 For example we need build three different app instances:
 - index     - `/`;
 - manage    - `/manage`;
-- dashboard - `/manage`.
+- dashboard - `/dashboard`.
 
 Simple way add **pages** config reference to **vue.config.js**.
 
